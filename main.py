@@ -4,8 +4,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 # Used to load sensitive data to the Environment variables.
 from dotenv import load_dotenv
-# PrettyPrint
-import pprint
 
 # Used to write to csv
 import csv
@@ -31,7 +29,7 @@ tracks.extend(result['items'])
 
 with open('Wedding Songs.csv', 'w', encoding='UTF8', newline='') as file:
     header = ['Artist', 'Song']
-    writer = csv.writer(file)
+    writer = csv.writer(file, escapechar=' ', quoting=csv.QUOTE_NONE)
     writer.writerow(header)
 
     for values in tracks:
@@ -45,8 +43,3 @@ with open('Wedding Songs.csv', 'w', encoding='UTF8', newline='') as file:
             'name', '')
         temp = " ".join(temp.split())
         writer.writerow([temp])
-
-pp = pprint.PrettyPrinter()
-
-print(temp)
-print(type(temp))
